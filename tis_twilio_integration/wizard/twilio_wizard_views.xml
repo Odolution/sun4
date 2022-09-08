@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="send_twilio_sms_form_wizard" model="ir.ui.view">
+        <field name="name">Send SMS Via Twilio Wizard</field>
+        <field name="model">twilio.sms.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                    <field name="body"/>
+                </sheet>
+                <footer>
+                    <button type="object" name="send_twilio_sms" string="Send" default_focus="1" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="action_twilio_send_sms_form" model="ir.actions.act_window">
+        <field name="name">Send SMS Via Twilio</field>
+        <field name="res_model">twilio.sms.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="context">{'default_partner_ids': [(6, 0, active_ids)]}</field>
+    </record>
+
+</odoo>

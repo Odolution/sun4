@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_twilio" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.twilio</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="60"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Twilio SMS" string="Twilio SMS"
+                     data-key="tis_twilio_integration">
+                    <h2>Twilio SMS Configuration</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Twilio Phone Number">
+                            <div class="o_setting_right_pane">
+                                <div>
+                                    <label string="Twilio Phone Number" for="twilio_phone_no"/>
+                                    <!--<div class="text-muted">
+                                        Twilio Phone Number
+                                    </div>-->
+                                    <div class="content-group mt16">
+                                        <field name="twilio_phone_no" nolabel="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <div class="mt8">
+                                    <button name="get_twilio_api_credentials" icon="fa-arrow-right" type="object"
+                                            string="Get your Twilio API Credentials" class="btn-link"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Twilio Account SID">
+                            <div class="o_setting_right_pane">
+                                <div>
+                                    <label string="Twilio Account SID" for="twilio_account_sid"/>
+                                    <!--<div class="text-muted">
+                                        Twilio Account SID
+                                    </div>-->
+                                    <div class="content-group mt16">
+                                        <field name="twilio_account_sid" nolabel="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Twilio Auth Token">
+                            <div class="o_setting_right_pane">
+                                <div>
+                                    <label string="Twilio Auth Token" for="twilio_auth_token"/>
+                                    <!--<div class="text-muted">
+                                        Twilio Auth Token
+                                    </div>-->
+                                    <div class="content-group mt16">
+                                        <field name="twilio_auth_token" nolabel="1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_twilio_sms_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'tis_twilio_integration'}</field>
+    </record>
+
+    <menuitem id="twilio_sms_configuration_menu" name="Configuration" parent="main_twilio_sms_menu" sequence="8"/>
+
+    <menuitem id="menu_twilio_sms_settings" name="Settings"
+              parent="twilio_sms_configuration_menu" sequence="0" action="action_twilio_sms_configuration"
+    />
+</odoo>
