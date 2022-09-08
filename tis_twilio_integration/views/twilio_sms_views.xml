@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="main_twilio_sms_menu" name="Twilio SMS" sequence="7"/>
+
+    <record id="twilio_sms_tree_view" model="ir.ui.view">
+        <field name="name">twilio.sms.tree.view</field>
+        <field name="model">twilio.sms.base</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="recipient_type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="send_twilio_sms_form" model="ir.ui.view">
+        <field name="name">twilio.sms.send.form</field>
+        <field name="model">twilio.sms.base</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send_twilio_sms" string="Send SMS" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','=', 'sent')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button type="object" class="oe_stat_button" icon="fa-send-o" name="action_view_success_partner"
+                                attrs="{'invisible': ['|', ('state', '!=', 'sent'), ('success_count', '=', 0)]}">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="success_count" readonly="True"/>
+                                </span>
+                                <span class="o_stat_text">Sent</span>
+                            </div>
+                        </button>
+                        <button type="object" class="oe_stat_button" icon="fa-reply" name="action_view_failed_partner"
+                                attrs="{'invisible': ['|', ('state', '!=', 'sent'), ('bounce_count', '=', 0)]}">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="bounce_count" readonly="True"/>
+                                </span>
+                                <span class="o_stat_text">Bounce</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="recipient_type" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="individual_member_id"
+                                   attrs="{'invisible':[('recipient_type','in',['multiple','contact_list'])], 'required' : [('recipient_type', '=', 'individual')]}"/>
+                            <field name="multiple_member_ids" widget="many2many_tags"
+                                   attrs="{'invisible':[('recipient_type','in',['individual','contact_list'])], 'required' : [('recipient_type', '=', 'multiple')]}"/>
+                            <field name="contact_list_ids" widget="many2many_tags"
+                                   attrs="{'invisible':[('recipient_type','in',['multiple','individual'])], 'required' : [('recipient_type', '=', 'contact_list')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message">
+                            <field name="body" placeholder="Enter message here"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="twilio_sms_action_form" model="ir.actions.act_window">
+        <field name="name">Twilio SMS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">twilio.sms.base</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="twilio_sms_menu" name="SMS" parent="main_twilio_sms_menu" sequence="3"
+              action="twilio_sms_action_form"/>
+
+</odoo>
