@@ -15,7 +15,7 @@ class projectExt(models.Model):
     
     def action_send_sms(self):
         for rec in self:
-            if (not rec.draftMessage) or rec.draftMessage=="":
+            if (not rec.draft_message) or rec.draft_message=="":
                 continue
             
             ids=[rec.partner_id.id]
