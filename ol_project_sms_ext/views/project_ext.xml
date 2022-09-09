@@ -7,7 +7,7 @@
             <!-- <xpath expr="//field[@name='display_type']" position="after">
                 <field name="order_type" invisible='1'/>
             </xpath> -->
-            <xpath expr="//page[@name='description_page']" position="after">
+            <xpath expr="//page[@name='description']" position="after">
                 <page string="SMS Chatter" name="sms_chatter" >
                     <group name="newsms" string="Type New Message">
                         <field name='draft_subject'/>

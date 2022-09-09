@@ -18,7 +18,7 @@ class projectExt(models.Model):
             if (not rec.draftMessage) or rec.draftMessage=="":
                 continue
             
-            ids=[i.id for i in rec.message_partner_ids]
+            ids=[rec.partner_id.id]
             
             rec.env['twilio.sms.base'].create({
                 'project_id':rec.id,
