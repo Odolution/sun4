@@ -17,14 +17,13 @@ class projectExt(models.Model):
         for rec in self:
             if (not rec.draft_message) or rec.draft_message=="":
                 continue
-            
-            ids=[rec.partner_id.id]
-            
+            if not partner_id:
+                raise UserError("Partner not selected.")
             sms=rec.env['twilio.sms.base'].create({
                 'project_id':rec.id,
                 'body':rec.draft_message,
                 'name':rec.draft_subject,
-                'multiple_member_ids':[(6, 0, ids)],
+                'individual_member_id':rec.partner_id.id,
             })
             sms.action_send_twilio_sms()
             rec.draft_subject=""
