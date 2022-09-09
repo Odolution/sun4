@@ -18,7 +18,7 @@
                     <h2>Chat History</h2>
                     <field name="messages_ids" options="{'no_create':True}" readonly="1" position="attributes">
                         <tree string="Chat History">
-                            <field name="id" />
+                            <field name="chatter_name"/>
                             <field name="name" />
                             <field name="body" />
                         </tree>

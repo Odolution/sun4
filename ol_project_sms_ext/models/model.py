@@ -5,7 +5,11 @@ from odoo.exceptions import UserError
 
 class twillioSMSExt(models.Model):
     _inherit = 'twilio.sms.base'
+    sms_type = fields.Selection([('outgoing', 'Sent'),('incoming','Received')], string= 'Type')
     project_id = fields.Many2one('project.project', string='project_id')
+    chatter_name = fields.Char(string='Chatter')
+    
+        
 class projectExt(models.Model):
     _inherit = 'project.project'
     
@@ -23,6 +27,8 @@ class projectExt(models.Model):
                 'project_id':rec.id,
                 'body':rec.draft_message,
                 'name':rec.draft_subject,
+                'sms_type':'outgoing',
+                'chatter_name':"Me",
                 'individual_member_id':rec.partner_id.id,
             })
             sms.action_send_twilio_sms()
