@@ -20,12 +20,15 @@ class projectExt(models.Model):
             
             ids=[rec.partner_id.id]
             
-            rec.env['twilio.sms.base'].create({
+            sms=rec.env['twilio.sms.base'].create({
                 'project_id':rec.id,
                 'body':rec.draftMessage,
                 'name':rec.draft_subject,
                 'multiple_member_ids':[(6, 0, ids)],
             })
+            sms.action_send_twilio_sms()
+            rec.draft_subject=""
+            rec.draft_message=""
         return
     
         

@@ -21,7 +21,6 @@
                             <field name="id" />
                             <field name="name" />
                             <field name="body" />
-                            <field name="multiple_member_ids" widget="many2many_tags"/>
                         </tree>
                     </field>
                 </page>
