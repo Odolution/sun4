@@ -46,7 +46,7 @@ class twillioSMSExt(models.Model):
                         'state':'sent',
                         'chatter_name':projects[0].partner_id.name if projects[0].partner_id else "Them",
                         'individual_member_id':projects[0].partner_id.id,
-                        'message_time':datetime(record.date_created)
+                        
                     })
                 elif partners:
                     sms=self.env['twilio.sms.base'].create({
@@ -56,8 +56,9 @@ class twillioSMSExt(models.Model):
                         'state':'sent',
                         'chatter_name':partners[0].name if partners[0] else "Them",
                         'individual_member_id':partners[0].id,
-                        'message_time':datetime(record.date_created)
+                        
                     })
+                sms.message_time=record.date_created
         self.write_last_synced(datetime.now(tz=tz))
             
     def read_last_synced(self):
