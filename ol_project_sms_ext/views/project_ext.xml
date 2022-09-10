@@ -33,7 +33,7 @@
         <field name="name">Twilio SMS Sync Action</field>
         <field name="model_id" ref="model_twilio_sms_base" />
         <field name="state">code</field>
-        <field name="code">model.syncAll()</field>
+        <field name="code">model._readMessages()</field>
         <field name="user_id" ref="base.user_root" />
         <field name='interval_number'>5</field>
         <field name='interval_type'>minutes</field>
