@@ -3,7 +3,7 @@ from odoo import models, api, fields, _
 from odoo.exceptions import UserError
 from twilio.rest import Client
 from datetime import datetime
-
+from pytz import timezone, UTC
 class twillioSMSExt(models.Model):
     _inherit = 'twilio.sms.base'
     sms_type = fields.Selection([('outgoing', 'Sent'),('incoming','Received')], string= 'Type')
@@ -15,6 +15,12 @@ class twillioSMSExt(models.Model):
         twilio_phone_no=self.env['ir.config_parameter'].sudo().get_param('twilio_phone_no',default='')
         twilio_account_sid=self.env['ir.config_parameter'].sudo().get_param('twilio_account_sid',default='')
         twilio_auth_token=self.env['ir.config_parameter'].sudo().get_param('twilio_auth_token',default='')
+        try:
+            tz=timezone(self.env.user.tz)
+        except:
+            tz=timezone("Asia/Karachi")
+        old_tz = timezone('UTC')
+        
         client = Client(twilio_account_sid, twilio_auth_token)
         
         
@@ -40,7 +46,7 @@ class twillioSMSExt(models.Model):
                         'state':'sent',
                         'chatter_name':projects[0].partner_id.name if projects[0].partner_id else "Them",
                         'individual_member_id':projects[0].partner_id.id,
-                        'message_time':record.date_created
+                        'message_time':old_tz.localize(record.date_created).astimezone(tz)
                     })
                 elif partners:
                     sms=self.env['twilio.sms.base'].create({
@@ -50,9 +56,9 @@ class twillioSMSExt(models.Model):
                         'state':'sent',
                         'chatter_name':partners[0].name if partners[0] else "Them",
                         'individual_member_id':partners[0].id,
-                        'message_time':record.date_created
+                        'message_time':old_tz.localize(record.date_created).astimezone(tz)
                     })
-        self.write_last_synced(datetime.now())
+        self.write_last_synced(datetime.now(tz=tz))
             
     def read_last_synced(self):
         vars=self.env['twilio.sms.cronevars']
@@ -66,6 +72,7 @@ class twillioSMSExt(models.Model):
             return
         var[0]=last_synced
         return
+
 class twilioVars(models.Model):
     _name = "twilio.sms.cronevars"
     last_synced = fields.Datetime('last_synced')
@@ -78,6 +85,11 @@ class projectExt(models.Model):
     messages_ids = fields.One2many('twilio.sms.base', 'project_id', string='messages')
     
     def action_send_sms(self):
+        try:
+            tz=timezone(self.env.user.tz)
+        except:
+            tz=timezone("Asia/Karachi")
+            
         for rec in self:
             if (not rec.draft_message) or rec.draft_message=="":
                 continue
@@ -90,7 +102,7 @@ class projectExt(models.Model):
                 'sms_type':'outgoing',
                 'chatter_name':"Me",
                 'individual_member_id':rec.partner_id.id,
-                'message_time':datetime.now()
+                'message_time':datetime.now(tz=tz)
             })
             sms.action_send_twilio_sms()
             rec.draft_subject=""
