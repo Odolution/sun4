@@ -74,7 +74,7 @@ class twillioSMSExt(models.Model):
         if len(vars)==0:
             self.env['twilio.sms.cronevars'].create({'last_synced':last_synced})
             return
-        vars[0]=last_synced
+        vars[0].last_synced=last_synced
         return
 
 class twilioVars(models.Model):
