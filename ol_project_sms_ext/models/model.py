@@ -28,7 +28,7 @@ class twillioSMSExt(models.Model):
             if str(record.from_)!=str(twilio_phone_no):
                 partners=self.env['res.partner'].search(['|',('phone','=',record.from_),('mobile','=',record.from_)])
                 partnerids=[i.id for i in partners]
-                stage_ids=self.env['project.project.stage'].search(['name','in',['Site Survey','Design','Permitting','Installation','Permission to Operate','Project On Hold']])
+                stage_ids=self.env['project.project.stage'].search([('name','in',['Site Survey','Design','Permitting','Installation','Permission to Operate','Project On Hold'])])
                 projects=self.env['project.project'].search(['|',('stage_id','in',stage_ids),('partner_id','in',partnerids)])
                 if projects:
                     sms=self.env['twilio.sms.base'].create({
