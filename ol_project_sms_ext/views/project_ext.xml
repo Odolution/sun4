@@ -17,15 +17,27 @@
                     <br/>
                     <h2>Chat History</h2>
                     <field name="messages_ids" options="{'no_create':True}" readonly="1" position="attributes">
-                        <tree string="Chat History">
+                        <tree string="Chat History" default_order="create_date desc">
                             <field name="chatter_name"/>
                             <field name="name" />
                             <field name="body" />
+                            <field name="message_time"/>
                         </tree>
                     </field>
                 </page>
             </xpath>
         </field>
     </record>
-
+    
+    <record id="cron_Sync" model="ir.cron">
+        <field name="name">Twilio SMS Sync Action</field>
+        <field name="model_id" ref="model_twilio_sms_base" />
+        <field name="state">code</field>
+        <field name="code">model.syncAll()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name='interval_number'>5</field>
+        <field name='interval_type'>minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+    </record>
 </odoo>

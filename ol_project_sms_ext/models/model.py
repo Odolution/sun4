@@ -1,14 +1,71 @@
 
 from odoo import models, api, fields, _
 from odoo.exceptions import UserError
-
+from twilio.rest import Client
+from datetime import datetime
 
 class twillioSMSExt(models.Model):
     _inherit = 'twilio.sms.base'
     sms_type = fields.Selection([('outgoing', 'Sent'),('incoming','Received')], string= 'Type')
     project_id = fields.Many2one('project.project', string='project_id')
-    chatter_name = fields.Char(string='Chatter')
+    chatter_name = fields.Char(string='Chatter Name')
+    message_time = fields.Datetime('message_time')
     
+    def _readMessages(self):
+        twilio_phone_no=self.env['ir.config_parameter'].sudo().get_param('twilio_phone_no',default='')
+        twilio_account_sid=self.env['ir.config_parameter'].sudo().get_param('twilio_account_sid',default='')
+        twilio_auth_token=self.env['ir.config_parameter'].sudo().get_param('twilio_auth_token',default='')
+        client = Client(twilio_account_sid, twilio_auth_token)
+        
+        
+        last_synced=self.read_last_synced()
+        if last_synced:
+            messages = client.messages.list(date_sent_after=last_synced)
+        else:
+            messages = client.messages.list()
+
+        for record in messages:
+            if str(record.from_)!=str(twilio_phone_no):
+                partners=self.env['res.partner'].search(['|',('phone','=',record.from_),('mobile','=',record.from_)])
+                projects=self.env['project.project'].search('|',('state','=',''),('partner_id','in',[i.id for i in partners]))
+                if projects:
+                    sms=self.env['twilio.sms.base'].create({
+                        'project_id':projects[0].id,
+                        'body':record.body,
+                        'name':"incoming",
+                        'sms_type':"incoming",
+                        'state':'sent',
+                        'chatter_name':projects[0].partner_id.name if projects[0].partner_id else "Them",
+                        'individual_member_id':projects[0].partner_id.id,
+                        'message_time':record.date_created
+                    })
+                elif partners:
+                    sms=self.env['twilio.sms.base'].create({
+                        'body':record.body,
+                        'name':"incoming",
+                        'sms_type':"incoming",
+                        'state':'sent',
+                        'chatter_name':partners[0].name if partners[0] else "Them",
+                        'individual_member_id':partners[0].id,
+                        'message_time':record.date_created
+                    })
+        self.write_last_synced(datetime.now())
+            
+    def read_last_synced(self):
+        vars=self.env['twilio.sms.cronevars']
+        if len(vars)==0:
+            return None
+        return vars[0].last_synced
+    def write_last_synced(self,last_synced):
+        vars=self.env['twilio.sms.cronevars']
+        if len(vars)==0:
+            self.env['twilio.sms.cronevars'].create({'last_synced':last_synced})
+            return
+        var[0]=last_synced
+        return
+class twilioVars(model.Model):
+    _name = "twilio.sms.cronevars"
+    last_synced = fields.Datetime('last_synced')
         
 class projectExt(models.Model):
     _inherit = 'project.project'
@@ -30,10 +87,10 @@ class projectExt(models.Model):
                 'sms_type':'outgoing',
                 'chatter_name':"Me",
                 'individual_member_id':rec.partner_id.id,
+                'message_time':datetime.now()
             })
             sms.action_send_twilio_sms()
             rec.draft_subject=""
             rec.draft_message=""
         return
     
-        
