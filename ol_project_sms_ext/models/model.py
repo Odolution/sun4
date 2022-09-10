@@ -59,7 +59,7 @@ class twillioSMSExt(models.Model):
                         
                     })
                 local = record.date_created.astimezone(tz)
-                message_time = datetime.datetime(local.year, local.month, local.day, local.hour, local.minute, local.second, local.microsecond)
+                message_time = datetime(local.year, local.month, local.day, local.hour, local.minute, local.second, local.microsecond)
                 sms.message_time=message_time
         self.write_last_synced(datetime.now(tz=tz))
             
