@@ -63,7 +63,7 @@ class twillioSMSExt(models.Model):
             return
         var[0]=last_synced
         return
-class twilioVars(model.Model):
+class twilioVars(models.Model):
     _name = "twilio.sms.cronevars"
     last_synced = fields.Datetime('last_synced')
         
