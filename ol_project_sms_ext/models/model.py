@@ -65,7 +65,7 @@ class twillioSMSExt(models.Model):
             
     def read_last_synced(self):
         vars=self.env['twilio.sms.cronevars'].search([('id','>',-1)])
-        raise UserError(len(vars))
+        
         if len(vars)==0:
             return None
         return vars[0].last_synced
