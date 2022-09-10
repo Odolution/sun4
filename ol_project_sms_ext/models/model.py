@@ -64,13 +64,13 @@ class twillioSMSExt(models.Model):
         self.write_last_synced(datetime.now())
             
     def read_last_synced(self):
-        vars=self.env['twilio.sms.cronevars'].search(['id','>',-1])
+        vars=self.env['twilio.sms.cronevars'].search([('id','>',-1)])
         raise UserError(len(vars))
         if len(vars)==0:
             return None
         return vars[0].last_synced
     def write_last_synced(self,last_synced):
-        vars=self.env['twilio.sms.cronevars'].search(['id','>',-1])
+        vars=self.env['twilio.sms.cronevars'].search([('id','>',-1)])
         if len(vars)==0:
             self.env['twilio.sms.cronevars'].create({'last_synced':last_synced})
             return
