@@ -20,6 +20,7 @@
     'data': [
         
         "views/project_ext.xml",
+        "views/twilio.xml"
         
     ],
     'demo': [
