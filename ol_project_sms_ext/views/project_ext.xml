@@ -17,7 +17,7 @@
                     <br/>
                     <h2>Chat History</h2>
                     <field name="messages_ids" options="{'no_create':True}" readonly="1" position="attributes">
-                        <tree string="Chat History" default_order="create_date desc">
+                        <tree string="Chat History" default_order="message_time desc">
                             <field name="chatter_name"/>
                             <field name="name" />
                             <field name="body" />
