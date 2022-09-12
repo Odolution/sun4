@@ -29,18 +29,16 @@ class twillioSMSExt(models.Model):
             messages = client.messages.list(date_sent_after=last_synced)
         else:
             messages = client.messages.list()
-        msg=""
+        
         for record in messages:
             if str(record.from_)!=str(twilio_phone_no):
-                mobile_from=record.from_[0:2]+" "+record.from_[2:5]+"-"+record.from_[5:8]+"-"+record.from_[8:]
+                try:
+                    mobile_from=record.from_[0:2]+" "+record.from_[2:5]+"-"+record.from_[5:8]+"-"+record.from_[8:]
+                except:
+                    continue
                 partners=self.env['res.partner'].search(['|',('phone','=',mobile_from),('mobile','=',mobile_from)])
-                # if not partners:
-                #     continue
-                msg+=str(mobile_from)+ " "+str(len(partners))
-                if len(partners)>0:
-                    msg+=" " + str(partners[0].phone)+" " + str(partners[0].phone)
-                msg+='\n'
-                continue
+                if len(partners)==0:
+                    continue
                 partnerids=[i.id for i in partners]
                 stages=self.env['project.project.stage'].search([('name','in',['Site Survey','Design','Permitting','Installation','Permission to Operate','Project On Hold'])])
                 stage_ids=[i.id for i in stages]
@@ -69,7 +67,7 @@ class twillioSMSExt(models.Model):
                 local = record.date_created.astimezone(tz)
                 message_time = datetime(local.year, local.month, local.day, local.hour, local.minute, local.second, local.microsecond)
                 sms.message_time=message_time
-        raise UserError(msg)
+        
         self.write_last_synced(datetime.now())
             
     def read_last_synced(self):
