@@ -32,10 +32,11 @@ class twillioSMSExt(models.Model):
         msg=""
         for record in messages:
             if str(record.from_)!=str(twilio_phone_no):
-                partners=self.env['res.partner'].search(['|',('phone','=',record.from_),('mobile','=',record.from_)])
+                mobile_from=record.from_[0:2]+" "+record.from_[2:5]+"-"+record.from_[5:8]+"-"+record.from_[8:]
+                partners=self.env['res.partner'].search(['|',('phone','=',mobile_from),('mobile','=',mobile_from)])
                 # if not partners:
                 #     continue
-                msg+=str(record.from_)+ " "+str(len(partners))
+                msg+=str(mobile_from)+ " "+str(len(partners))
                 if len(partners)>0:
                     msg+=" " + str(partners[0].phone)+" " + str(partners[0].phone)
                 msg+='\n'
