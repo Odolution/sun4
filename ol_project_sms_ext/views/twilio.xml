@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="twilio_crone_vars_tree_view" model="ir.ui.view">
+        <field name="name">twilio.sms.cronevars.tree.view</field>
+        <field name="model">twilio.sms.cronevars</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="last_synced"/>
+            </tree>
+        </field>
+    </record>
+    <record id="twilio_crome_vars_action_form" model="ir.actions.act_window">
+        <field name="name">Twilio Crone Vars</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">twilio.sms.cronevars</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="cronevars" name="Crone Variables" parent="tis_twilio_integration.main_twilio_sms_menu" sequence="7"
+              action="twilio_crome_vars_action_form"/>
+
+</odoo>

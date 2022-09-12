@@ -1,0 +1,44 @@
+<odoo>
+    <record id="view_project_form_ext" model="ir.ui.view">
+        <field name="name">view_project_form_ext</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='display_type']" position="after">
+                <field name="order_type" invisible='1'/>
+            </xpath> -->
+            <xpath expr="//page[@name='description']" position="after">
+                <page string="SMS Chatter" name="sms_chatter" >
+                    <group name="newsms" string="Type New Message">
+                        <field name='draft_subject'/>
+                        <field name='draft_message'/>
+                        <button name="action_send_sms" string="Send SMS" type="object" class="btn-primary right"/>        
+                    </group>
+                    <br/>
+                    <h2>Chat History</h2>
+                    <field name="messages_ids" options="{'no_create':True}" readonly="1" position="attributes">
+                        
+                        <tree string="Chat History" default_order="message_time desc">
+                            <field name="chatter_name"/>
+                            <field name="name" />
+                            <field name="body" />
+                            <field name="message_time"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="cron_Sync" model="ir.cron">
+        <field name="name">Twilio SMS Sync Action</field>
+        <field name="model_id" ref="model_twilio_sms_base" />
+        <field name="state">code</field>
+        <field name="code">model._readMessages()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name='interval_number'>5</field>
+        <field name='interval_type'>minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+    </record>
+</odoo>
