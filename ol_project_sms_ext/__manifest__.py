@@ -20,7 +20,8 @@
     'data': [
         
         "views/project_ext.xml",
-        "views/twilio.xml"
+        "views/twilio.xml",
+        "security/ir.model.access.csv"
         
     ],
     'demo': [
