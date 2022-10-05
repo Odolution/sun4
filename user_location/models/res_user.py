@@ -2,7 +2,7 @@
 # Part of Odoo, Aktiv Software PVT. LTD.
 # See LICENSE file for full copyright & licensing details.
 
-from msilib.schema import Class
+#from msilib.schema import Class
 from odoo import api, fields, models
 import requests
 from geopy.geocoders import Nominatim
