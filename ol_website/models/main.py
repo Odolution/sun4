@@ -50,7 +50,7 @@ class visitorform(http.Controller):
         print(request.session['bill'])
         # request.env['crm.lead'].create(lead)
 
-        return request.redirect('/calendar/schedule-a-demo-1')
+        return request.redirect('/calendar/put-your-roof-to-work-1')
 
 
 
