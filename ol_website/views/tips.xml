@@ -1,0 +1,67 @@
+<odoo>
+    <template id="tips" name="Tips">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <h3 style="color:#fc9138;">Tips</h3>
+                    </center>
+                    <img src="https://www.sun4.inc/wp-content/uploads/2021/06/lower.jpg" alt="" width="1000px" height="500px"/>
+                    <br/><br/>
+                    <p>We’re coming up on peak energy use season—the summer. Because when it’s hot outside, everything
+                        in your home has to work that much harder. Your A/C is fighting harder to keep you cool. Your
+                        pool pump is running longer and harder. Your family is home more, and they never turn off the
+                        lights when they leave a room. Here are some tips to save energy and money as temperatures rise,
+                        so you can lower your energy bill or even eliminate it with rooftop solar.
+                    </p>
+                    <br/>
+                    <p>Here are five ways you can keep your bill low during the summer and for years to come.</p>
+                    <p>
+                        <strong>
+                            <strong>
+                                <strong>1.Keep cool air in</strong>
+                                <br/>
+                            </strong>
+                        </strong>
+                        Check your windows and doors for leaky spots where your air conditioning can escape and hot air
+                        can come in. Add weatherstripping where needed to seal your home from the outside air. This can
+                        help your air conditioner keep you cool more quickly and efficiently.
+                    </p>
+                    <p>
+                        <strong>2.Mind the thermostat</strong>
+                        <br/>Cooling costs are a significant driver of energy bills, so keeping the difference between
+                        the outdoor air and the indoor air temperatures saves you the most on your energy bill. For
+                        every degree you raise your thermostat, you can save 5% on your cooling costs alone!
+                    </p>
+                    <p>
+                        <strong>3.Automate your energy use</strong>
+                        <br/>For outdoor lighting or even inside your home, timers can help those forgetful family
+                        members when they forget to turn off a light. These can be motion-activated, turning on when
+                        someone enters the room or set on a timer, ready to turn off and go to bed when you go to bed,
+                        or to light your way in the middle of the night.
+                    </p>
+                    <p>
+                        <strong>4.Switch to energy-efficient appliances</strong>
+                        <br/>If you're in the market for a new major appliance, look for Energy Star-rated options that
+                        can automatically help you use less energy. Look for older appliances in your home that could
+                        use an upgrade, and switch them out for more energy-efficient options to save energy and money
+                        without even thinking about it.
+                    </p>
+                    <p>
+                        <strong>5.Go solar!</strong>
+                        <br/>The most significant way to offset your energy bill is by going solar. With rooftop solar,
+                        the energy you need is generated right above your head with clean, renewable rays from our sun.
+                        There is solar for all budgets and types of homes, and you can have a solar energy system
+                        designed for your unique needs at a price that's likely less than you pay for energy each month
+                        with your electric utility.
+                    </p>
+                    <p>Sun4 can help you install the solar energy system that's right for you and your budget. And if
+                        you set yourself up for success by following energy-saving tips like these, you're sure to see
+                        your electric bill go down, down, down just like your carbon footprint and soon, you'll be
+                        helping the planet and your wallet.
+                    </p>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

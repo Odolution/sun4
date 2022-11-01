@@ -1,0 +1,65 @@
+<odoo>
+    <template id="form_submission" name="Survey form">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/><br/><br/>
+                    <center>
+                        <h3 style="color:#fc9138;">SEE HOW YOU CAN SAVE WITH SOLAR ENERGY</h3>
+                    </center>
+                    <div class="container">
+
+                        <!--                        <form action="/tips" >-->
+                        <form class="mt32 appointment_submit_form" t-attf-action="/tips" method="POST">
+                            <!--                            class="form-horizontal" t-attf-action="/tips" method="POST"-->
+<!--                            <div class="form-group">-->
+<!--                                <label class="control-label col-sm-2" for="name">Your Name:</label>-->
+<!--                                <div class="col-sm-10">-->
+<!--                                    <input type="text" class="form-control" id="name" placeholder="Enter Your name"-->
+<!--                                           name="Name" required="1"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <div class="btn btn-default">
+                                <label class="btn btn-default" for="option">Are you the homeowner?</label>
+                                <input type="radio" id="html" name="option" value="ownhouse"/>
+                                <label for="html">Yes</label>
+                                <input type="radio" id="css" name="option" value="notown"/>
+                                <label for="css">No</label>
+
+                                <!--                                <input type="checkbox" id="others" name="option" value="ownhouse"/>-->
+
+                            </div>
+
+<!--                            <div class="btn btn-default">-->
+<!--                                <label class="btn btn-default" for="bill">What's your average monthly utility bill?</label><br/>-->
+<!--                                <input type="radio" id="first" name="bill" value="firstt"/>-->
+<!--                                <label for="html">$100-$150</label><br/>-->
+<!--                                <input type="radio" id="second" name="bill" value="seconds"/>-->
+<!--                                <label for="css">$150-$200</label><br/>-->
+<!--                                <input type="radio" id="third" name="bill" value="thirdss"/>-->
+<!--                                <label for="css">$250-$300</label><br/>-->
+<!--                                <input type="radio" id="fourth" name="bill" value="fourths"/>-->
+<!--                                <label for="css">$300</label>-->
+
+<!--                                                             <input type="checkbox" id="others" name="option" value="ownhouse"/>&ndash;&gt;-->
+
+<!--                            </div>-->
+                            <div class="row">
+                                <div class="col-8"></div>
+                                <div class="col-4 my-3">
+
+                                    <!--                        <button type="submit" class="btn btn-default" form="option" value="submit">Submit</button>-->
+
+                                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </t>
+    </template>
+</odoo>
