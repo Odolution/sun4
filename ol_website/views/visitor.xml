@@ -8,27 +8,27 @@
                     </center>
                     <form class="mt32 appointment_visitor_form" t-attf-action="/visitorform" method="POST">
                         <div class="form-group">
-                            <label class="" for="name">Your Name:</label>
+                            <label class="" for="name">Name:</label>
                             <div class="">
-                                <input type="text" class="form-control" id="Name" placeholder="Enter Your name"
+                                <input type="text" class="form-control" id="Name" placeholder="Enter Name"
                                        name="name" required="1"/>
 
-                                <label class="" for="address">Your Address:</label>
+                                <label class="" for="address">Address:</label>
                             </div>
                             <div class="">
-                                <input type="text" class="form-control" id="Address" placeholder="Your Address"
+                                <input type="text" class="form-control" id="Address" placeholder="Enter Address"
                                        name="address" required="1"/>
 
-                                <label class="" for="email">Your Email:</label>
+                                <label class="" for="email">Email:</label>
                             </div>
                             <div class="">
-                                <input type="email" class="form-control" id="Email" placeholder="Enter Your email"
+                                <input type="email" class="form-control" id="Email" placeholder="Enter Email"
                                        name="email" required="1"/>
 
-                                <label class="" for="phone">Your Phone:</label>
+                                <label class="" for="phone">Phone:</label>
                             </div>
                             <div class="">
-                                <input type="text" class="form-control" id="Phone" placeholder="Enter Your Phone"
+                                <input type="text" class="form-control" id="Phone" placeholder="Enter Phone"
                                        name="phone" required="1"/>
 
                             </div>
