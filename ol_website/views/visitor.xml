@@ -1,0 +1,56 @@
+<odoo>
+    <template id="visitorform" name="Visitor Form">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
+                        <h3 style="color:#fc9138;">Visitor Form</h3>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
+                    </center>
+                    <form class="mt32 appointment_visitor_form" t-attf-action="/visitorform" method="POST">
+                        <div class="form-group">
+                            <label class="" for="name">Name:</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="Name" placeholder="Enter Name"
+                                       name="name" required="1"/>
+
+                                <label class="" for="address">Address:</label>
+                            </div>
+                            <div class="">
+                                <input type="text" class="form-control" id="Address" placeholder="Enter Address"
+                                       name="address" required="1"/>
+
+                                <label class="" for="email">Email:</label>
+                            </div>
+                            <div class="">
+                                <input type="email" class="form-control" id="Email" placeholder="Enter Email"
+                                       name="email" required="1"/>
+
+                                <label class="" for="phone">Phone:</label>
+                            </div>
+                            <div class="">
+                                <input type="text" class="form-control" id="Phone" placeholder="Enter Phone"
+                                       name="phone" required="1"/>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8"></div>
+                            <div class="col-4 my-3">
+
+                                <!--                        <button type="submit" class="btn btn-default" form="option" value="submit">Submit</button>-->
+
+                                <button type="submit" class="btn btn-primary">SUBMIT</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
