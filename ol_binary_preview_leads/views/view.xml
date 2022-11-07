@@ -1,0 +1,28 @@
+<odoo>
+    <record id="crm_leads_form_ext" model="ir.ui.view">
+        <field name="name">leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='x_studio_contract']" position="after">
+                <button name="preview_Contract" string="preview" class="oe_highlight" type="object" />
+            </xpath>
+            
+            <xpath expr="//field[@name='x_studio_proposal']" position="after">
+                <button name="preview_Proposal" string="preview" class="oe_highlight" type="object" />
+            </xpath>
+            
+            <xpath expr="//field[@name='x_studio_utility_bill']" position="after">
+                <button name="preview_Utility_bill" string="preview" class="oe_highlight" type="object" />
+            </xpath> -->
+            <xpath expr="//field[@name='team_id']" position="after">
+                <label for="sample_field"/>
+                <div class="o_row">
+                    <field name="sample_field"/>
+                    <button name="preview_sample_binary" string="preview" class="oe_highlight" type="object" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
