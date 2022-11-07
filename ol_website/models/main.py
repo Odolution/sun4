@@ -8,7 +8,7 @@ import requests
 
 class surveryform(http.Controller):
 
-    @http.route('/funnel', auth='public', website='True')
+    @http.route('/Sun4PR', auth='public', website='True')
     def index(self):
         return request.render('ol_website.form_submission')
 
