@@ -2,13 +2,14 @@ from odoo import http
 from odoo.http import request
 from odoo import models, fields, api
 from odoo.exceptions import UserError
+from dateutil.relativedelta import relativedelta
 import base64
 import requests
 
 
 class surveryform(http.Controller):
 
-    @http.route('/form', auth='public', website='True')
+    @http.route('/Sun4PR', auth='public', website='True')
     def index(self):
         return request.render('ol_website.form_submission')
 
@@ -81,6 +82,41 @@ class tips(http.Controller):
             return request.render('ol_website.tips')
         else:
             return request.render('ol_website.bill')
+
+class inheritincompany(models.Model):
+    _inherit = 'project.project'
+
+    another_date = fields.Datetime(default=fields.Datetime.now())
+    project_expiry=fields.Datetime()
+
+    @api.constrains('partner_id')
+    def get_customer_id(self):
+        partner = self.partner_id
+        print(partner.name)
+        context = ['Sunrun','Maximo Solar Industries','Planet Solar and Power']
+        if partner.name not in context:
+            company = self.env.user.company_id
+            print(company)
+            for rec in self:
+                if rec.another_date:
+                    project_expiry = rec.another_date + relativedelta(days=company.expiry_days)
+                    rec.project_expiry = project_expiry
+        else:
+            print('hope')
+
+
+
+
+class inheritincompanyfield(models.Model):
+    _inherit = 'res.company'
+
+    expiry_days=fields.Integer(string='Project Expiry Days')
+
+
+    def company_id(self):
+        active_id = self.env.user.company_id
+        print(active_id)
+
 
 
 # class inheritincompany(models.Model):

@@ -4,7 +4,11 @@
             <div class="oe_structure">
                 <div class="container">
                     <center>
-                        <h3 style="color:#fc9138;">Bill</h3>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
+                        <h3 style="color:#fc9138;">SEE HOW YOU CAN SAVE WITH SOLAR ENERGY</h3>
+                         <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
+                        <td style="color:grey;">Reduce your electrical bill by up to 95%</td>
+
                     </center>
                     <form class="mt32 appointment_bill_form" t-attf-action="/bill" method="POST">
                         <!--                            class="form-horizontal" t-attf-action="/tips" method="POST"-->

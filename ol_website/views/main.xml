@@ -1,11 +1,13 @@
 <odoo>
-    <template id="form_submission" name="Survey form">
+    <template id="form_submission" name="Funnel">
         <t t-call="website.layout">
             <div class="oe_structure">
                 <div class="container">
                     <br/><br/><br/>
                     <center>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
                         <h3 style="color:#fc9138;">SEE HOW YOU CAN SAVE WITH SOLAR ENERGY</h3>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
                     </center>
                     <div class="container">
 
@@ -24,7 +26,7 @@
                                 <label class="btn btn-default" for="option">Are you the homeowner?</label>
                                 <input type="radio" id="html" name="option" value="ownhouse"/>
                                 <label for="html">Yes</label>
-                                <input type="radio" id="css" name="option" value="notown"/>
+                                <input type="radio" id="css" name="option" value="notown" />
                                 <label for="css">No</label>
 
                                 <!--                                <input type="checkbox" id="others" name="option" value="ownhouse"/>-->

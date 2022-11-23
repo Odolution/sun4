@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+            <record model="ir.ui.view" id="project_project_inherit_new">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+                   <xpath expr="//field[@name='company_id']" position="after">
+                       <field name="another_date" string="Date" invisible="1"/>
+                       <field name="project_expiry" string="Project Deadline"/>
+                    </xpath>
+        </field>
+    </record>
+        <record id="res_company_inherit_new" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                   <xpath expr="//page[@name='general_info']//field[@name='website']" position="after">
+
+                       <field name="expiry_days"/>
+
+
+                    </xpath>
+        </field>
+    </record>
+
+
+
+
+
+
+
+    </data>
+</odoo>

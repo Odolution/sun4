@@ -4,7 +4,9 @@
             <div class="oe_structure">
                 <div class="container">
                     <center>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
                         <h3 style="color:#fc9138;">Tips</h3>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
                     </center>
                     <img src="https://www.sun4.inc/wp-content/uploads/2021/06/lower.jpg" alt="" width="1000px" height="500px"/>
                     <br/><br/>

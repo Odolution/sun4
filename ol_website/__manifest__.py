@@ -3,7 +3,7 @@
 {
     "name": "Odoolution Website",
 
-    "author": "alishahab9090@gmail.com",
+    "author": "Odoolution",
 
     "license": "OPL-1",
 
@@ -18,6 +18,7 @@
         'views/tips.xml',
         'views/bill.xml',
         'views/visitor.xml',
+        'views/project.xml',
 
 
 

@@ -4,7 +4,9 @@
             <div class="oe_structure">
                 <div class="container">
                     <center>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
                         <h3 style="color:#fc9138;">Visitor Form</h3>
+                        <hr style="height: 1px; border-width: 0; color: black; background-color: black;"/>
                     </center>
                     <form class="mt32 appointment_visitor_form" t-attf-action="/visitorform" method="POST">
                         <div class="form-group">
