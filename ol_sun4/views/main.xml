@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_inherit_timesheet_tree">
+            <field name="name">account.analytic.line.tree</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="create_date"/>
+                    <field name="__last_update"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+
+    </data>
+</odoo>
